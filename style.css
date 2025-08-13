@@ -1,0 +1,161 @@
+/* Global */
+:root {
+  --glass: rgba(255, 255, 255, 0.35);
+  --text-dark: #333;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  text-align: center;
+  background: linear-gradient(135deg, #ffecd2, #fcb69f);
+  margin: 0;
+  padding: 28px 16px 40px;
+  color: var(--text-dark);
+}
+
+h1 {
+  font-size: 52px;
+  margin: 0 0 10px;
+  text-shadow: 2px 2px rgba(0,0,0,0.08);
+}
+
+/* Top bar */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+#score {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  padding: 8px 18px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  min-width: 130px;
+}
+
+#restartBtn {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, #43e97b, #38f9d7);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  transition: transform .15s ease, filter .15s ease;
+}
+#restartBtn:hover { transform: translateY(-1px); filter: brightness(1.05); }
+#restartBtn:active { transform: translateY(0); }
+
+/* Board */
+#board {
+  width: 420px;
+  max-width: 92vw;
+  aspect-ratio: 1 / 1; /* stays square on mobile */
+  background-color: var(--glass);
+  backdrop-filter: blur(10px);
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 10px;
+  border-radius: 18px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+}
+
+/* Tiles */
+.tile {
+  font-size: clamp(18px, 6vw, 30px);
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  height: 100%;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  box-shadow: inset 0 -5px rgba(0, 0, 0, 0.12);
+  color: white;
+  user-select: none;
+}
+
+.tile:hover { transform: scale(1.04); }
+
+/* Fresh, attractive palette */
+.tile-0  { background: rgba(255,255,255,0.35); }
+.tile-2  { background: #a8edea; color: #222; }
+.tile-4  { background: #fed6e3; color: #222; }
+.tile-8  { background: linear-gradient(135deg, #fbc2eb, #a6c1ee); }
+.tile-16 { background: linear-gradient(135deg, #fddb92, #d1fdff); color: #222; }
+.tile-32 { background: linear-gradient(135deg, #84fab0, #8fd3f4); }
+.tile-64 { background: linear-gradient(135deg, #ff9a9e, #fecfef); }
+.tile-128 { background: linear-gradient(135deg, #f6d365, #fda085); font-size: clamp(16px, 5vw, 26px); }
+.tile-256 { background: linear-gradient(135deg, #fccb90, #d57eeb); font-size: clamp(16px, 5vw, 26px); }
+.tile-512 { background: linear-gradient(135deg, #a1c4fd, #c2e9fb); font-size: clamp(14px, 4.5vw, 24px); }
+.tile-1024 { background: linear-gradient(135deg, #f093fb, #f5576c); font-size: clamp(12px, 4vw, 22px); }
+.tile-2048 { background: linear-gradient(135deg, #43e97b, #38f9d7); font-size: clamp(12px, 4vw, 20px); }
+
+/* Overlay */
+#gameOverOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none; /* toggled to flex */
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  padding: 16px;
+}
+
+#gameOverBox {
+  background: #fff;
+  padding: 26px 24px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 16px 36px rgba(0,0,0,0.35);
+  max-width: 320px;
+  width: 100%;
+  animation: pop .18s ease;
+}
+
+#gameOverBox h2 {
+  margin: 0 0 8px;
+  font-size: 26px;
+}
+
+#gameOverBox p {
+  margin: 0 0 16px;
+  color: #555;
+}
+
+#gameOverBox button {
+  padding: 10px 18px;
+  font-size: 15px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  cursor: pointer;
+  transition: transform .15s ease, filter .15s ease;
+}
+#gameOverBox button:hover { transform: translateY(-1px); filter: brightness(1.05); }
+
+.hint {
+  opacity: 0.8;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+/* Animations */
+@keyframes pop {
+  from { transform: scale(0.95); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}

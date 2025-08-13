@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2048 — TileTactix</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>2048</h1>
+
+    <div class="topbar">
+      <div id="score">Score: 0</div>
+      <button id="restartBtn" aria-label="Restart" onclick="restartGame()">
+        Restart
+      </button>
+    </div>
+
+    <div id="board" role="grid" aria-label="2048 board"></div>
+
+    <!-- Game Over Overlay -->
+    <div id="gameOverOverlay" aria-hidden="true">
+      <div id="gameOverBox" role="dialog" aria-modal="true">
+        <h2>Game Over 😢</h2>
+        <p>No more moves left.</p>
+        <button onclick="restartGame()">Play Again</button>
+      </div>
+    </div>
+
+    <p class="hint">Use ⬅️ ⬆️ ⬇️ ➡️ keys (or WASD) to play.</p>
+
+    <script src="script.js"></script>
+  </body>
+</html>
